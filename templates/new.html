@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page-content %}
+<form action="/" method="post">
+	Bundle ID:
+	<input type="text" name="bundle_id" />	
+	<br />
+	Bundle Version:
+	<input type="text" name="bundle_version" />	
+
+	<br />
+	ISO Language Code:
+	<input type="text" name="iso_language_code" />	
+	
+	<br />
+	Notes:
+	<textarea name="notes" rows="3" cols="60"></textarea>
+
+	<br />
+	Application Link:
+	<input type="text" name="application_link" />	
+
+	<br />
+	Localization Link:
+	<input type="text" name="localization_link" />	
+
+	<br />
+	<input type="submit" value="Submit Localization">
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+	    <title>Localmac.org</title>
+	    <link>{{ link }}</link>
+		<description>Localmac.org localizations ({{ link }})</description>
+	    <language>{{ language }}</language>
+		<ttl>60</ttl>
+		<item>
+			<title>WriteRoom 2.3.7 (44)</title>
+			<pubDate></pubDate>
+			<description><![CDATA[<ul>
+			<li><strong>Fixed</strong> Conflict that caused problems when using WriteRoom from <a href="http://www.red-sweater.com/marsedit/">MarsEdit</a>.</li>
+			</ul>]]></description>
+		</item>
+	</channel>
+</rss>

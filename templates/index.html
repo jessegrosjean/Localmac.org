@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block page-content %}
+<h1>Localmac.org</h1>
+<h2>Find apps in your language</h2>
+
+<p>For Mac users who want <a href="http://en.wikipedia.org/wiki/Internationalization_and_localization">localized</a> versions of their favorite apps. Localmac.org is where you find and share localizations. Don&#8217;t wait around for your app&#8217;s developer to do it, create and share your own localizations here and now.</p>
+
+<table>
+	<tr>
+		<th>Localizations</th>
+	</tr>
+	{% for each in results %}
+	<tr>
+		<td>
+			<a href="{{ each.localization_link }}">({{ each.iso_language_code }}) {{ each.name }} — {{ each.bundle_version }}</a>
+		<td/>
+	</tr>
+	{% endfor %}
+</table>
+	
+{% endblock %}

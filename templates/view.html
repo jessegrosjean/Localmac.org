@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page-content %}
+<form action="/" method="post">
+	Bundle ID: {{ localization.bundle_id }}
+	<br />
+	Bundle Version: {{ localization.bundle_version }}
+
+	<br />
+	ISO Language Code: {{ localization.iso_language_code }}
+	
+	<br />
+	Notes:
+	<textarea name="notes" rows="3" cols="60">{{ localization.notes }}</textarea>
+
+	<br />
+	Application Link:  {{ localization.application_link }}
+
+	<br />
+	Localization Link: {{ localization.localization_link }}
+
+</form>
+{% endblock %}
