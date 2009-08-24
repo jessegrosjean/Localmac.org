@@ -2,6 +2,7 @@
 
 import os
 import pager
+import logging
 import wsgiref.handlers
 
 from google.appengine.ext import db
@@ -9,6 +10,14 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
+iso_codes_to_language_name = {}
+iso_codes = open(os.path.join(os.path.dirname(__file__) + '/templates', 'iso_codes.txt'), 'r')
+
+for line in iso_codes:
+	row = line.split('|')
+	iso_codes_to_language_name[row[0]] = row[2]
+
+iso_codes.close()
 
 #
 # Model
@@ -120,6 +129,7 @@ class LocalizationsHandler(webapp.RequestHandler):
 class LocalizationHandler(webapp.RequestHandler):
 	@require_localization
 	def get(self, localization):
+		logging.info(iso_codes_to_language_name)
 		self.response.out.write(render("view.html", { 'localization' : localization }))
 
 	@require_user

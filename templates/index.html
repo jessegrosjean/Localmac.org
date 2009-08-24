@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block page-content %}
+<div id="header">
+<image src="/static/logo.png" width="337" height="65" alt="Localmac.org — Work in your language"/>
 <h1>Localmac.org</h1>
-<h2>Find apps in your language</h2>
+<h2>Work in your language</h2>
+</div>
 
-<p>For Mac users who want <a href="http://en.wikipedia.org/wiki/Internationalization_and_localization">localized</a> versions of their favorite apps. Localmac.org is where you find and share localizations. Don&#8217;t wait around for your app&#8217;s developer to do it, create and share your own localizations here and now.</p>
+<p>For Mac users who want localized versions of their favorite apps. Localmac.org is where you find and share translations that the developer forgot to include. Don&#8217;t wait around for your app&#8217;s developer to do it, work in your language today.</p>
 
 <table>
 	<tr>
@@ -14,7 +17,7 @@
 	<tr>
 		<td>
 			<a href="{{ each.localization_link }}">({{ each.iso_language_code }}) {{ each.name }} — {{ each.bundle_version }}</a>
-		<td/>
+		</td>
 	</tr>
 	{% endfor %}
 </table>

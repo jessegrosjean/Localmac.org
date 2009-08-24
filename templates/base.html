@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Localmac.org — Find apps in your language.</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<title>Localmac.org — Work in your language.</title>
+	<link href="/static/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -14,6 +14,25 @@
 			{% endblock %}
 	  </div>
 	</div>
+
+	<p id="menu">
+		<a href="/">Home</a> | <a href="/about">About</a> | <a href="/">Login</a>
+	</p>
+
+	<p id="about">
+		Localmac.org is a production of <a href="http://www.hogbaysoftware.com/">Hog Bay Software</a>.<br />
+		If you have questions please stop by our <a href="http://groups.google.com/group/localmacorg">user forum</a>.
+	</p>
+
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-63798-7");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
 </body>
 
 </html>

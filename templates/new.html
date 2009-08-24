@@ -1,30 +1,41 @@
 {% extends 'base.html' %}
 
 {% block page-content %}
+
+<h1>Submit new localization</h1>
+
+<p>
+
 <form action="/" method="post">
-	Bundle ID:
-	<input type="text" name="bundle_id" />	
-	<br />
-	Bundle Version:
-	<input type="text" name="bundle_version" />	
-
-	<br />
-	ISO Language Code:
-	<input type="text" name="iso_language_code" />	
+	<fieldset>
+        <legend>Info</legend>
 	
-	<br />
-	Notes:
-	<textarea name="notes" rows="3" cols="60"></textarea>
+		<label for="bundle_id">Bundle ID: <em class="required">required</em></label>
+		<input type="text" name="bundle_id" class="text" id="bundle_id" /><br />
 
-	<br />
-	Application Link:
-	<input type="text" name="application_link" />	
+		<label for="bundle_version">Bundle Version: <em class="required">required</em></label>
+		<input type="text" name="bundle_version" class="text" id="bundle_version" /><br />
 
-	<br />
-	Localization Link:
-	<input type="text" name="localization_link" />	
+		<label for="iso_language_code">Language: <em class="required">required</em></label>
+		<input type="text" name="iso_language_code" class="text" id="iso_language_code" /><br />
+	</fieldset>
+	
+	<fieldset>
+        <legend>Links</legend>
 
-	<br />
+		<label for="application_link">Application Home Page Link: <em class="required">required</em></label>
+		<input type="text" name="application_link" class="text" id="application_link" /><br />
+
+		<label for="localization_link">Localization Download Link: <em class="required">required</em></label>
+		<input type="text" name="localization_link" class="text" id="localization_link" /><br />
+	</fieldset>
+
+	<fieldset>
+        <legend>Notes</legend>
+		<p for="message">Include any notes specific to your localization. Feel free to include a link back to your own site.</p>
+		<textarea rows="10" cols="50" name="notes" id="notes"></textarea>
+	</fieldset>
+
 	<input type="submit" value="Submit Localization">
 </form>
 {% endblock %}

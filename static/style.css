@@ -1,0 +1,18 @@
+body { width:40em; margin:auto; padding:0; color:black; background:white; font:1em 'Helvetica Neue', Arial, Verdana, sans-serif; line-height:1.4em; }
+a { color:black;}
+table {width:100%; border-collapse:collapse; margin:auto;}
+td {border-top:1px solid gray; border-bottom:1px solid gray; padding:0.25em;}
+#header {text-align:center; margin:1.5em 0;}
+#header h1 { display:none; }
+#header h2 { display:none; }
+#page { width:650px; padding:0.5em; }
+#page-content { border:none; font:1.0em Helvetica; }
+#menu {text-align:center;}
+#menu a { color:black; font-weight:bold; font-size:1em;}
+
+tr:nth-child(even) {background:#eee;}
+tr:nth-child(odd) {background:white;}
+
+#about {text-align:center; font-size:0.8em;}
+
+
