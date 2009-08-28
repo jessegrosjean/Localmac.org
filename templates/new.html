@@ -2,13 +2,16 @@
 
 {% block page-content %}
 
-<h1>Submit new localization</h1>
+<h1>New Localization</h1>
 
 <p>
 
 <form action="/" method="post">
 	<fieldset>
         <legend>Info</legend>
+
+		<label for="name">Name: <em class="required">required</em></label>
+		<input type="text" name="name" class="text" id="name" /><br />
 	
 		<label for="bundle_id">Bundle ID: <em class="required">required</em></label>
 		<input type="text" name="bundle_id" class="text" id="bundle_id" /><br />
@@ -30,12 +33,6 @@
 		<input type="text" name="localization_link" class="text" id="localization_link" /><br />
 	</fieldset>
 
-	<fieldset>
-        <legend>Notes</legend>
-		<p for="message">Include any notes specific to your localization. Feel free to include a link back to your own site.</p>
-		<textarea rows="10" cols="50" name="notes" id="notes"></textarea>
-	</fieldset>
-
-	<input type="submit" value="Submit Localization">
+	<input type="submit" value="Create Localization">
 </form>
 {% endblock %}

@@ -7,19 +7,46 @@
 <h2>Work in your language</h2>
 </div>
 
-<p>For Mac users who want localized versions of their favorite apps. Localmac.org is where you find and share translations that the developer forgot to include. Don&#8217;t wait around for your app&#8217;s developer to do it, work in your language today.</p>
+<p>For Mac users who want localized versions of their favorite apps. Localmac.org is where you find and share unsupported localizations. Don&#8217;t wait around for the developer to support it, work in your language today.</p>
+
+<form action="/" method="get" id="search">
+	<strong>Search:</strong>
+	<input accesskey="s" id="q" name="q" placeholder="Search" type="search" value="{{ q }}"/>
+	<input type="submit" value="Go!" />
+</form>
 
 <table>
-	<tr>
-		<th>Localizations</th>
-	</tr>
-	{% for each in results %}
-	<tr>
-		<td>
-			<a href="{{ each.localization_link }}">({{ each.iso_language_code }}) {{ each.name }} — {{ each.bundle_version }}</a>
-		</td>
-	</tr>
-	{% endfor %}
+	{% if results %}
+		{% for each in results %}
+		<tr>
+			<td>
+				<a href="{{ each.application_link }}">{{ each.name }} {{ each.bundle_version }}</a> — <a href="{{ each.localization_link }}">{{ each.language}} localization</a> shared by {{ each.user_html }}
+			</td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<tr>
+			<td>
+				Found no matching localizations.
+			</td>
+		</tr>
+	{% endif %}
 </table>
-	
+
+<p id="paging">
+	{% if previous %}	
+	<a id="previous" href="next">« Previous</a>
+	{% endif %}
+
+	{% if next %}	
+	<a id="next" href="next">Next »</a>
+	{% endif %}
+</p>
+
+<ul id="menu">
+	<li>Learn <a href="/about">about</a> Localmac.org.</li>
+	<li>Share your <a href="/new">new</a> localization today.</li>
+	<li>Discuss in the Localmac.org <a href="/about">user forum</a>.</li>
+</ul>
+
 {% endblock %}

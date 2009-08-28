@@ -1,18 +1,23 @@
-body { width:40em; margin:auto; padding:0; color:black; background:white; font:1em 'Helvetica Neue', Arial, Verdana, sans-serif; line-height:1.4em; }
+body {width:40em;margin:auto;padding:0;color:black; background:white; font:1em 'Helvetica Neue', Arial, Verdana, sans-serif; line-height:1.4em; }
 a { color:black;}
 table {width:100%; border-collapse:collapse; margin:auto;}
-td {border-top:1px solid gray; border-bottom:1px solid gray; padding:0.25em;}
+td { padding:0.25em;}
+input, select, checkbox, radio, file, textarea { font-size:1.2em; }
 #header {text-align:center; margin:1.5em 0;}
 #header h1 { display:none; }
 #header h2 { display:none; }
-#page { width:650px; padding:0.5em; }
-#page-content { border:none; font:1.0em Helvetica; }
-#menu {text-align:center;}
-#menu a { color:black; font-weight:bold; font-size:1em;}
-
-tr:nth-child(even) {background:#eee;}
-tr:nth-child(odd) {background:white;}
-
-#about {text-align:center; font-size:0.8em;}
+#page {padding:0.5em; }
+#page-content { font:1.0em Helvetica; }
+#search {padding:0.5em; margin:1em 0;text-align:center;}
+#paging {padding:0.5em 0;}
+#previous {float:left;}
+#next {float:right;}
+#paging a, #menu a {font-weight:bold;}
+.center {text-align:center;}
+tr:nth-child(even) {background:white;}
+tr:nth-child(odd) {background:#efefef;}
+#share {text-align:center;font-size:1.0em; font-weight:bold;}
+#copyright { font-size:0.7em; text-align:center;  }
+#copyright img { padding:1em;  }
 
 

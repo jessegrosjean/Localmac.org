@@ -12,10 +12,11 @@ from google.appengine.ext.webapp import template
 
 iso_codes_to_language_name = {}
 iso_codes = open(os.path.join(os.path.dirname(__file__) + '/templates', 'iso_codes.txt'), 'r')
+language_select_form_element = ""
 
 for line in iso_codes:
 	row = line.split('|')
-	iso_codes_to_language_name[row[0]] = row[2]
+	iso_codes_to_language_name[row[0]] = row[3]
 
 iso_codes.close()
 
@@ -27,16 +28,25 @@ class Localization(db.Model):
 	user_id = db.StringProperty(required=True)
 	created = db.DateTimeProperty(required=True, auto_now_add=True)
 	modified = db.DateTimeProperty(required=True, auto_now=True)
+	name = db.StringProperty(required=True)
+	searchable_name = db.StringProperty(required=True)
 	bundle_id = db.StringProperty(required=True)
 	bundle_version = db.StringProperty(required=True)
 	iso_language_code = db.StringProperty(required=True)
-	notes = db.StringProperty()
 	application_link = db.LinkProperty(required=True)
 	localization_link = db.LinkProperty(required=True)
+	user_link = db.LinkProperty()
+
+	def language(self):
+		return iso_codes_to_language_name[self.iso_language_code]
 	
-	def name(self):
-		return os.path.splitext(self.bundle_id)[1].strip('.')
-		
+	def user_html(self):
+		user = users.User(self.user_id)
+		if self.user_link:
+			return '<a href="%s">%s</a>' % (self.user_link, user.nickname())
+		else:
+			return user.nickname()
+	
 	def localization_link(self):
 		return "/%d" % self.key().id()
 
@@ -106,22 +116,31 @@ class LocalizationsHandler(webapp.RequestHandler):
 	def get(self):
 		bookmark = self.request.get('bookmark', None)
 		format = self.request.get('format', None)
-		prev, results, next = pager.PagerQuery(Localization).fetch(10, bookmark)
+		q = self.request.get('q', "").lower()
+
+		if q:
+			pager_query = pager.PagerQuery(Localization).filter('searchable_name >=', q).filter('searchable_name <', q + u"\ufffd").order('searchable_name').order('modified')
+		else:
+			pager_query = pager.PagerQuery(Localization).order('modified')
+
+		prev, results, next = pager_query.fetch(20, bookmark)
 		
 		if format == 'rss':
-			self.response.out.write(render("feed.rss", { 'prev' : prev, 'results' : results, 'next' : next }))
+			self.response.out.write(render("feed.rss", { 'q' : q, 'prev' : prev, 'results' : results, 'next' : next }))
 		else:
-			self.response.out.write(render("index.html", { 'prev' : prev, 'results' : results, 'next' : next }))
+			self.response.out.write(render("index.html", { 'q' : q, 'prev' : prev, 'results' : results, 'next' : next }))
 
 	@require_user
 	def post(self, user):
+		name = self.request.get('name', None)
 		bundle_id = self.request.get('bundle_id', None)
 		bundle_version = self.request.get('bundle_version', None)
 		iso_language_code = self.request.get('iso_language_code', None)
 		application_link = self.request.get('application_link', None)
 		localization_link = self.request.get('localization_link', None)
+		user_link = self.request.get('user_link', None)
 		
-		localization = Localization(user_id=user_id_for_user(user), bundle_id=bundle_id, bundle_version=bundle_version, iso_language_code=iso_language_code, application_link=application_link, localization_link=localization_link)
+		localization = Localization(user_id=user_id_for_user(user), name=name, searchable_name=name.lower(), bundle_id=bundle_id, bundle_version=bundle_version, iso_language_code=iso_language_code, application_link=application_link, localization_link=localization_link, user_link=user_link)
 		localization.put()
 		
 		self.redirect(localization.localization_link())
@@ -129,7 +148,6 @@ class LocalizationsHandler(webapp.RequestHandler):
 class LocalizationHandler(webapp.RequestHandler):
 	@require_localization
 	def get(self, localization):
-		logging.info(iso_codes_to_language_name)
 		self.response.out.write(render("view.html", { 'localization' : localization }))
 
 	@require_user
